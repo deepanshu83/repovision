@@ -5,6 +5,7 @@ type Analysis = {
   filesScanned: number;
   importantFiles: string[];
   summary: string;
+  complexity: string;
 };
 
 const mockAnalysis = (repo: string): Analysis => {
@@ -15,7 +16,8 @@ const mockAnalysis = (repo: string): Analysis => {
       techStack: ['Next.js', 'TypeScript', 'Tailwind CSS'],
       filesScanned: 124,
       importantFiles: ['app/page.tsx', 'components/Navbar.tsx', 'lib/auth.ts'],
-      summary: `Detected a modern React + Next.js repository. The app likely uses server components and route-based pages to build fast experiences.`,
+      summary: `A modern React + Next.js fullstack application. Uses server components for optimized performance and route-based architecture. Strong typing with TypeScript and responsive design with Tailwind CSS.`,
+      complexity: 'Advanced',
     };
   }
 
@@ -24,7 +26,8 @@ const mockAnalysis = (repo: string): Analysis => {
       techStack: ['Node.js', 'Express', 'JavaScript'],
       filesScanned: 78,
       importantFiles: ['server.js', 'routes/api.js', 'middleware/auth.js'],
-      summary: `This repository looks like a backend API or service app. Focus areas are routing, middleware, and request handling.`,
+      summary: `Backend API service built with Express.js. Well-organized routing structure with middleware for authentication and request handling. Suitable for REST API or microservices architecture.`,
+      complexity: 'Intermediate',
     };
   }
 
@@ -32,7 +35,8 @@ const mockAnalysis = (repo: string): Analysis => {
     techStack: ['JavaScript', 'React', 'HTML/CSS'],
     filesScanned: 42,
     importantFiles: ['src/App.js', 'src/index.js', 'package.json'],
-    summary: `A small web repository with basic UI and app structure. Good starting point for RepoVision MVP validation.`,
+    summary: `A frontend-focused React application with component-based architecture. Good foundation for learning React fundamentals or rapid prototyping of web interfaces.`,
+    complexity: 'Beginner-friendly',
   };
 };
 
@@ -73,76 +77,135 @@ function App() {
 
   return (
     <div className="app-shell">
-      <header>
-        <h1>RepoVision MVP</h1>
-        <p>Paste any GitHub repository URL or owner/repo path to get a fast analysis preview.</p>
+      <header className="navbar">
+        <div className="navbar-content">
+          <div className="logo">
+            <span className="logo-icon">◉</span>
+            <h1>RepoVision AI</h1>
+          </div>
+          <p className="tagline">Transform repositories into intelligence</p>
+        </div>
       </header>
 
       <main>
-        <form className="repo-form" onSubmit={handleSubmit}>
-          <label htmlFor="repoUrl">GitHub repository URL</label>
-          <div className="input-row">
-            <input
-              id="repoUrl"
-              placeholder="https://github.com/user/repo or user/repo"
-              value={repoUrl}
-              onChange={(event) => setRepoUrl(event.target.value)}
-            />
-            <button type="submit">Scan</button>
+        <section className="hero">
+          <div className="hero-content">
+            <h2>Understand Your Codebase Instantly</h2>
+            <p className="hero-subtitle">Paste a GitHub repository URL and get instant AI-powered analysis, visualization, and insights. No installation, no complexity.</p>
+            
+            <form className="repo-form" onSubmit={handleSubmit}>
+              <div className="form-group">
+                <label htmlFor="repoUrl" className="sr-only">GitHub repository URL</label>
+                <div className="input-wrapper">
+                  <input
+                    id="repoUrl"
+                    className="repo-input"
+                    placeholder="Paste GitHub URL or owner/repo"
+                    value={repoUrl}
+                    onChange={(event) => setRepoUrl(event.target.value)}
+                  />
+                  <button type="submit" className="btn-primary">Analyze</button>
+                </div>
+              </div>
+            </form>
+
+            <p className="form-hint">Example: github.com/vercel/next.js or vercel/next.js</p>
           </div>
-        </form>
+        </section>
 
         {submitted && (
-          <section className="results">
+          <section className="results-section">
             {repoName ? (
               <>
-                <div className="card highlight">
-                  <h2>Repository</h2>
-                  <p>{repoName}</p>
+                <div className="results-header">
+                  <h2 className="results-title">Repository Analysis</h2>
+                  <p className="results-repo">{repoName}</p>
                 </div>
 
-                <div className="grid">
-                  <div className="card">
-                    <h3>Tech stack</h3>
-                    <ul>
+                <div className="stats-grid">
+                  <div className="stat-card">
+                    <div className="stat-label">Tech Stack</div>
+                    <div className="stat-tags">
                       {analysis?.techStack.map((item) => (
-                        <li key={item}>{item}</li>
+                        <span key={item} className="tag">{item}</span>
                       ))}
-                    </ul>
+                    </div>
                   </div>
 
-                  <div className="card">
-                    <h3>Files scanned</h3>
-                    <p>{analysis?.filesScanned}</p>
+                  <div className="stat-card">
+                    <div className="stat-label">Files Analyzed</div>
+                    <div className="stat-value">{analysis?.filesScanned}</div>
                   </div>
 
-                  <div className="card">
-                    <h3>Key files</h3>
-                    <ul>
-                      {analysis?.importantFiles.map((file) => (
-                        <li key={file}>{file}</li>
-                      ))}
-                    </ul>
+                  <div className="stat-card">
+                    <div className="stat-label">Complexity Level</div>
+                    <div className="complexity-badge">{analysis?.complexity}</div>
                   </div>
                 </div>
 
-                <div className="card wide-card">
-                  <h3>AI summary</h3>
+                <div className="card summary-card">
+                  <h3>📊 AI Analysis</h3>
                   <p>{analysis?.summary}</p>
+                </div>
+
+                <div className="card files-card">
+                  <h3>🔑 Key Files</h3>
+                  <div className="files-list">
+                    {analysis?.importantFiles.map((file) => (
+                      <div key={file} className="file-item">
+                        <span className="file-icon">📄</span>
+                        <code>{file}</code>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="cta-section">
+                  <button className="btn-secondary" onClick={() => { setRepoUrl(''); setRepoName(null); setSubmitted(false); }}>Analyze Another Repo</button>
                 </div>
               </>
             ) : (
-              <div className="card error">
-                <h3>Invalid input</h3>
-                <p>Enter a GitHub repo URL like <code>https://github.com/user/repo</code> or <code>user/repo</code>.</p>
+              <div className="error-state">
+                <div className="error-icon">⚠️</div>
+                <h3>Invalid Repository</h3>
+                <p>Please enter a valid GitHub URL or owner/repo format</p>
+                <p className="error-hint">Examples: <code>github.com/user/repo</code> or <code>user/repo</code></p>
               </div>
             )}
+          </section>
+        )}
+
+        {!submitted && (
+          <section className="features">
+            <h2>Powerful Features</h2>
+            <div className="features-grid">
+              <div className="feature-card">
+                <div className="feature-icon">🔍</div>
+                <h4>Tech Stack Detection</h4>
+                <p>Automatically detect frameworks, languages, and dependencies</p>
+              </div>
+              <div className="feature-card">
+                <div className="feature-icon">📊</div>
+                <h4>Code Analysis</h4>
+                <p>Get insights on file structure and important components</p>
+              </div>
+              <div className="feature-card">
+                <div className="feature-icon">🤖</div>
+                <h4>AI Summaries</h4>
+                <p>Understand what the codebase does in plain English</p>
+              </div>
+              <div className="feature-card">
+                <div className="feature-icon">⚡</div>
+                <h4>Instant Results</h4>
+                <p>Get analysis in seconds, no installation required</p>
+              </div>
+            </div>
           </section>
         )}
       </main>
 
       <footer>
-        <p>RepoVision MVP — simple repo analysis preview.</p>
+        <p>&copy; 2024 RepoVision AI. Powered by advanced code analysis and machine learning.</p>
       </footer>
     </div>
   );
