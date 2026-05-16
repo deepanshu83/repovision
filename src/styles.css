@@ -344,9 +344,9 @@ main {
   border-radius: 8px;
   font-size: 14px;
   font-weight: 600;
-  background: rgba(16, 185, 129, 0.15);
-  color: var(--success);
-  border: 1px solid rgba(16, 185, 129, 0.3);
+  background: rgba(20, 184, 166, 0.12);
+  color: var(--accent);
+  border: 1px solid rgba(20, 184, 166, 0.25);
 }
 
 /* Cards */
@@ -518,8 +518,8 @@ main {
 
 /* Footer */
 footer {
-  background: rgba(15, 23, 42, 0.5);
-  border-top: 1px solid rgba(71, 85, 105, 0.3);
+  background: rgba(13, 17, 23, 0.8);
+  border-top: 1px solid rgba(48, 54, 61, 0.8);
   padding: 40px 24px;
   text-align: center;
   color: var(--text-muted);

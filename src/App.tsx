@@ -81,17 +81,17 @@ function App() {
         <div className="navbar-content">
           <div className="logo">
             <span className="logo-icon">◉</span>
-            <h1>RepoVision AI</h1>
+            <h1>RepoVision</h1>
           </div>
-          <p className="tagline">Transform repositories into intelligence</p>
+          <p className="tagline">Code Intelligence Platform</p>
         </div>
       </header>
 
       <main>
         <section className="hero">
           <div className="hero-content">
-            <h2>Understand Your Codebase Instantly</h2>
-            <p className="hero-subtitle">Paste a GitHub repository URL and get instant AI-powered analysis, visualization, and insights. No installation, no complexity.</p>
+            <h2>Understand Any Codebase in Seconds</h2>
+            <p className="hero-subtitle">Analyze GitHub repositories with AI-powered intelligence. Get instant insights on architecture, dependencies, tech stack, and code structure. No installation required.</p>
             
             <form className="repo-form" onSubmit={handleSubmit}>
               <div className="form-group">
@@ -100,7 +100,7 @@ function App() {
                   <input
                     id="repoUrl"
                     className="repo-input"
-                    placeholder="Paste GitHub URL or owner/repo"
+                    placeholder="github.com/user/repo"
                     value={repoUrl}
                     onChange={(event) => setRepoUrl(event.target.value)}
                   />
@@ -109,7 +109,7 @@ function App() {
               </div>
             </form>
 
-            <p className="form-hint">Example: github.com/vercel/next.js or vercel/next.js</p>
+            <p className="form-hint">Try: vercel/next.js • facebook/react • nodejs/node</p>
           </div>
         </section>
 
@@ -168,8 +168,8 @@ function App() {
               <div className="error-state">
                 <div className="error-icon">⚠️</div>
                 <h3>Invalid Repository</h3>
-                <p>Please enter a valid GitHub URL or owner/repo format</p>
-                <p className="error-hint">Examples: <code>github.com/user/repo</code> or <code>user/repo</code></p>
+                <p>Please enter a valid GitHub repository URL</p>
+                <p className="error-hint">Format: <code>github.com/user/repo</code> or <code>user/repo</code></p>
               </div>
             )}
           </section>
@@ -177,27 +177,27 @@ function App() {
 
         {!submitted && (
           <section className="features">
-            <h2>Powerful Features</h2>
+            <h2>Powerful Insights</h2>
             <div className="features-grid">
               <div className="feature-card">
                 <div className="feature-icon">🔍</div>
                 <h4>Tech Stack Detection</h4>
-                <p>Automatically detect frameworks, languages, and dependencies</p>
+                <p>Identify frameworks, languages, databases, and all dependencies at a glance</p>
               </div>
               <div className="feature-card">
                 <div className="feature-icon">📊</div>
-                <h4>Code Analysis</h4>
-                <p>Get insights on file structure and important components</p>
+                <h4>Code Architecture</h4>
+                <p>Understand file structure, key components, and project organization</p>
               </div>
               <div className="feature-card">
                 <div className="feature-icon">🤖</div>
-                <h4>AI Summaries</h4>
-                <p>Understand what the codebase does in plain English</p>
+                <h4>AI-Powered Analysis</h4>
+                <p>Get intelligent summaries explaining what the codebase does</p>
               </div>
               <div className="feature-card">
                 <div className="feature-icon">⚡</div>
                 <h4>Instant Results</h4>
-                <p>Get analysis in seconds, no installation required</p>
+                <p>Complete analysis in seconds without any setup or configuration</p>
               </div>
             </div>
           </section>
@@ -205,7 +205,7 @@ function App() {
       </main>
 
       <footer>
-        <p>&copy; 2024 RepoVision AI. Powered by advanced code analysis and machine learning.</p>
+        <p>&copy; 2024 RepoVision. Advanced code intelligence for developers.</p>
       </footer>
     </div>
   );
