@@ -44,18 +44,24 @@ const parseRepoName = (input: string) => {
   const trimmed = input.trim();
   if (!trimmed) return null;
 
-  try {
-    const url = new URL(trimmed);
-    const parts = url.pathname.replace(/\/+$/, '').split('/').filter(Boolean);
+  const normalizeParts = (parts: string[]) => {
     if (parts.length >= 2) {
       return `${parts[0]}/${parts[1]}`;
     }
+    return null;
+  };
+
+  try {
+    const url = new URL(trimmed.startsWith('http') ? trimmed : `https://${trimmed}`);
+    const pathname = url.pathname.replace(/\/+$|^\/+/, '');
+    const parts = pathname.split('/').filter(Boolean);
+    return normalizeParts(parts);
   } catch {
-    // not a full URL
+    // not a parseable URL
   }
 
   const parts = trimmed.split('/').filter(Boolean);
-  return parts.length === 2 ? trimmed : null;
+  return normalizeParts(parts);
 };
 
 function App() {
@@ -109,7 +115,7 @@ function App() {
               </div>
             </form>
 
-            <p className="form-hint">Try: vercel/next.js • facebook/react • nodejs/node</p>
+            <p className="form-hint">Try: vercel/next.js • facebook/react • nodejs/node • github.com/vercel/next.js</p>
           </div>
         </section>
 
