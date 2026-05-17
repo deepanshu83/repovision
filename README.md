@@ -1,202 +1,85 @@
-# RepoVision AI
+# RepoVision MVP
 
-> Transform any GitHub repository into a living, interactive architecture map powered by AI.
+A simple AI-powered GitHub repository analysis tool.
 
-![RepoVision Banner](./public/banner.png)
+This project contains a lightweight Express backend and a Next.js frontend. The backend fetches JavaScript/TypeScript files from GitHub, extracts local dependencies, builds a dependency graph, and uses OpenRouter to generate a beginner-friendly explanation.
 
----
+## Folder structure
 
-# Overview
+- `server/`
+  - `github/` — GitHub repository fetcher and recursive traversal
+  - `parser/` — dependency extraction logic
+  - `graph/` — graph builder and important-file detection
+  - `ai/` — OpenRouter summary integration
+  - `index.ts` — Express API service
+- `frontend/`
+  - `app/` — Next.js pages and layout
+  - `components/` — React Flow visualization
+  - `lib/` — shared types
 
-RepoVision AI is an advanced repository intelligence platform designed to help developers understand, analyze, visualize, and debug codebases at scale.
+## How it works
 
-Instead of manually reading hundreds of files, tracing imports, or guessing architecture decisions, RepoVision converts repositories into interactive visual systems.
+### Backend flow
 
-Paste a GitHub repository URL and instantly explore:
+1. Parse GitHub URL into `owner` and `repo`.
+2. Use the GitHub Contents API to traverse folders recursively.
+3. Filter only `.js`, `.jsx`, `.ts`, `.tsx` files and skip `node_modules`, build folders, and images.
+4. Download each file content using `download_url`.
+5. Extract local import relationships with a simple regex-based parser.
+6. Build `nodes` and `edges` for a dependency graph.
+7. Detect central files by import count.
+8. Send a compact summary to OpenRouter for an AI explanation.
 
-* Tech stack analysis
-* Language breakdowns
-* File dependency graphs
-* Component relationships
-* API flow visualization
-* Impact analysis
-* Dead code detection
-* Security insights
-* AI-powered repository explanations
+### Frontend flow
 
-RepoVision is built for:
+1. User enters a GitHub repo URL.
+2. The page sends a POST request to `/api/analyze` on the backend.
+3. The backend returns a graph plus AI explanation.
+4. The app renders the graph with React Flow and displays important files.
 
-* Developers
-* Open-source contributors
-* Students
-* Startup teams
-* Technical interview preparation
-* Engineering onboarding
-* Code reviewers
-* Security researchers
+## Setup
 
----
+1. Install dependencies
 
-# The Problem
-
-Modern repositories are difficult to understand.
-
-Large projects contain:
-
-* hundreds of files
-* deeply nested imports
-* hidden dependencies
-* complex architecture decisions
-* undocumented flows
-* dead code
-* unsafe coupling
-
-New developers waste hours or days understanding:
-
-* where logic starts
-* what files are connected
-* what breaks after deletion
-* how APIs flow
-* how state management works
-* which files are safe to refactor
-
-Most existing tools only solve small pieces of the problem.
-
-RepoVision combines:
-
-* static analysis
-* dependency intelligence
-* architecture visualization
-* AI explanations
-* impact prediction
-
-into one unified developer experience.
-
----
-
-# Core Features
-
-## 1. GitHub Repository Scanner
-
-Paste any public GitHub repository URL.
-
-RepoVision automatically detects:
-
-* programming languages
-* frameworks
-* package managers
-* database systems
-* deployment platforms
-* CI/CD tools
-* state management libraries
-* styling systems
-* testing frameworks
-
-### Example Detection
-
-```txt
-Framework: Next.js
-Language: TypeScript
-Styling: Tailwind CSS
-Database: PostgreSQL
-ORM: Prisma
-Deployment: Vercel
-Testing: Jest
-Package Manager: pnpm
+```bash
+npm install
 ```
 
----
+2. Start the backend and frontend separately
 
-# 2. Interactive Dependency Graph
-
-Visualize how files connect across the repository.
-
-### Features
-
-* zoomable graph navigation
-* draggable nodes
-* grouped architecture layers
-* circular dependency detection
-* import tracing
-* module hierarchy
-
-### Example
-
-```txt
-app/page.tsx
-   ↓
-components/Navbar.tsx
-   ↓
-lib/auth.ts
-   ↓
-database/user.ts
+```bash
+npm run dev:backend
+npm run dev:frontend
 ```
 
-Users can:
+Or start both together:
 
-* click nodes
-* inspect relationships
-* trace execution paths
-* analyze architecture patterns
-
----
-
-# 3. Delete Impact Analysis
-
-One of the most powerful features.
-
-Select any file and instantly see:
-
-* affected files
-* broken imports
-* API failures
-* component crashes
-* routing impact
-* state dependency failures
-
-### Example
-
-Deleting:
-
-```txt
-lib/auth.ts
+```bash
+npm run dev
 ```
 
-May affect:
+3. Open the frontend at:
 
-```txt
-middleware.ts
-app/login/page.tsx
-hooks/useAuth.ts
-components/Navbar.tsx
+```bash
+http://localhost:3000
 ```
 
-This prevents dangerous refactors and saves debugging time.
+4. The backend runs at:
 
----
+```bash
+http://localhost:4000
+```
 
-# 4. AI Repository Explanation
+## Environment variables
 
-Understand unfamiliar repositories instantly.
+- `OPENROUTER_API_KEY` — required for AI summaries
+- `GITHUB_TOKEN` — optional to increase GitHub API rate limits
 
-### Prompt Examples
+## Notes
 
-* Explain this project like I’m a beginner
-* Summarize the backend architecture
-* Explain authentication flow
-* Describe API structure
-* Show application startup flow
-* Identify critical files
-
-The AI layer uses repository-aware context to provide:
-
-* architecture summaries
-* file explanations
-* flow descriptions
-* dependency insights
-* optimization suggestions
-
----
+- This MVP only supports JavaScript/TypeScript repositories.
+- It does not include authentication or teams.
+- It is intentionally simple and built for fast iteration.
 
 # 5. Tech Stack Intelligence
 
@@ -703,5 +586,6 @@ Built with a focus on:
 # Final Goal
 
 Turn every repository into an interactive knowledge graph.
-#   r e p o v i s i o n  
+#   r e p o v i s i o n 
+ 
  

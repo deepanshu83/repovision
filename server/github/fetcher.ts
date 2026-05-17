@@ -1,4 +1,4 @@
-import { GitHubContent } from '../types.ts';
+import { GitHubContent } from '../types';
 
 const GITHUB_API = 'https://api.github.com';
 const IGNORED_DIRS = ['node_modules', '.git', '.next', 'dist', 'build', 'out', 'coverage'];

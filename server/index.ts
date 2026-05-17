@@ -1,9 +1,9 @@
 import express from 'express';
 import cors from 'cors';
-import { parseRepoUrl, fetchRepoFiles, fetchFileContent } from './github/fetcher.ts';
-import { buildDependencyGraph, getTopImportantFiles } from './graph/graphBuilder.ts';
-import { getAiRepositorySummary } from './ai/openRouter.ts';
-import type { RepositoryFile } from './types.ts';
+import { parseRepoUrl, fetchRepoFiles, fetchFileContent } from './github/fetcher';
+import { buildDependencyGraph, getTopImportantFiles } from './graph/graphBuilder';
+import { getAiRepositorySummary } from './ai/openRouter';
+import type { RepositoryFile } from './types';
 
 const app = express();
 app.use(cors({ origin: true }));

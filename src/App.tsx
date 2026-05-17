@@ -89,7 +89,12 @@ function App() {
             <span className="logo-icon">◉</span>
             <h1>RepoVision</h1>
           </div>
-          <p className="tagline">Code Intelligence Platform</p>
+          <nav className="navbar-nav">
+            <a href="#features" className="nav-link">Features</a>
+            <a href="#how-it-works" className="nav-link">How It Works</a>
+            <a href="#capabilities" className="nav-link">Capabilities</a>
+          </nav>
+          <a href="https://github.com" className="btn-outline">GitHub</a>
         </div>
       </header>
 
@@ -182,36 +187,156 @@ function App() {
         )}
 
         {!submitted && (
-          <section className="features">
-            <h2>Powerful Insights</h2>
-            <div className="features-grid">
-              <div className="feature-card">
-                <div className="feature-icon">🔍</div>
-                <h4>Tech Stack Detection</h4>
-                <p>Identify frameworks, languages, databases, and all dependencies at a glance</p>
+          <>
+            <section className="features" id="features">
+              <div className="section-header">
+                <h2>Powerful Insights</h2>
+                <p className="section-subtitle">Get comprehensive analysis of any GitHub repository in seconds</p>
               </div>
-              <div className="feature-card">
-                <div className="feature-icon">📊</div>
-                <h4>Code Architecture</h4>
-                <p>Understand file structure, key components, and project organization</p>
+              <div className="features-grid">
+                <div className="feature-card">
+                  <div className="feature-icon">🔍</div>
+                  <h4>Tech Stack Detection</h4>
+                  <p>Identify frameworks, languages, databases, and all dependencies at a glance</p>
+                </div>
+                <div className="feature-card">
+                  <div className="feature-icon">📊</div>
+                  <h4>Code Architecture</h4>
+                  <p>Understand file structure, key components, and project organization</p>
+                </div>
+                <div className="feature-card">
+                  <div className="feature-icon">🤖</div>
+                  <h4>AI-Powered Analysis</h4>
+                  <p>Get intelligent summaries explaining what the codebase does</p>
+                </div>
+                <div className="feature-card">
+                  <div className="feature-icon">⚡</div>
+                  <h4>Instant Results</h4>
+                  <p>Complete analysis in seconds without any setup or configuration</p>
+                </div>
               </div>
-              <div className="feature-card">
-                <div className="feature-icon">🤖</div>
-                <h4>AI-Powered Analysis</h4>
-                <p>Get intelligent summaries explaining what the codebase does</p>
+            </section>
+
+            <section className="how-it-works" id="how-it-works">
+              <div className="section-header">
+                <h2>How It Works</h2>
+                <p className="section-subtitle">Simple three-step process to analyze any repository</p>
               </div>
-              <div className="feature-card">
-                <div className="feature-icon">⚡</div>
-                <h4>Instant Results</h4>
-                <p>Complete analysis in seconds without any setup or configuration</p>
+              <div className="steps-grid">
+                <div className="step-card">
+                  <div className="step-number">1</div>
+                  <h4>Paste Repository URL</h4>
+                  <p>Enter any GitHub repository URL or username/repo format</p>
+                </div>
+                <div className="step-card">
+                  <div className="step-number">2</div>
+                  <h4>AI Analysis</h4>
+                  <p>Our AI scans the codebase and analyzes dependencies, structure, and patterns</p>
+                </div>
+                <div className="step-card">
+                  <div className="step-number">3</div>
+                  <h4>Get Insights</h4>
+                  <p>Receive detailed analysis with tech stack, key files, and architecture overview</p>
+                </div>
               </div>
-            </div>
-          </section>
+            </section>
+
+            <section className="capabilities" id="capabilities">
+              <div className="section-header">
+                <h2>What We Can Analyze</h2>
+                <p className="section-subtitle">Comprehensive support for popular tech stacks</p>
+              </div>
+              <div className="capabilities-grid">
+                <div className="capability-item">
+                  <span className="capability-icon">⚛️</span>
+                  <h5>React & Vue</h5>
+                  <p>Component-based architecture</p>
+                </div>
+                <div className="capability-item">
+                  <span className="capability-icon">🟩</span>
+                  <h5>Node.js</h5>
+                  <p>Backend services</p>
+                </div>
+                <div className="capability-item">
+                  <span className="capability-icon">🐍</span>
+                  <h5>Python</h5>
+                  <p>Data & ML projects</p>
+                </div>
+                <div className="capability-item">
+                  <span className="capability-icon">☕</span>
+                  <h5>Java</h5>
+                  <p>Enterprise apps</p>
+                </div>
+                <div className="capability-item">
+                  <span className="capability-icon">🔷</span>
+                  <h5>TypeScript</h5>
+                  <p>Type-safe code</p>
+                </div>
+                <div className="capability-item">
+                  <span className="capability-icon">🎯</span>
+                  <h5>Go & Rust</h5>
+                  <p>High-performance systems</p>
+                </div>
+              </div>
+            </section>
+
+            <section className="cta-section-main">
+              <div className="cta-content">
+                <h2>Ready to Understand Your Codebase?</h2>
+                <p>Join developers who use RepoVision to navigate complex repositories with confidence</p>
+                <p className="cta-hint">Start analyzing now - it's free and takes seconds</p>
+              </div>
+            </section>
+          </>
         )}
       </main>
 
       <footer>
-        <p>&copy; 2024 RepoVision. Advanced code intelligence for developers.</p>
+        <div className="footer-content">
+          <div className="footer-section">
+            <h4>RepoVision</h4>
+            <p>Transform GitHub repositories into interactive architecture maps powered by AI.</p>
+            <div className="social-links">
+              <a href="#" aria-label="GitHub">GitHub</a>
+              <a href="#" aria-label="Twitter">Twitter</a>
+              <a href="#" aria-label="LinkedIn">LinkedIn</a>
+            </div>
+          </div>
+
+          <div className="footer-section">
+            <h4>Features</h4>
+            <ul>
+              <li><a href="#features">Tech Stack Detection</a></li>
+              <li><a href="#features">Code Architecture</a></li>
+              <li><a href="#features">AI Analysis</a></li>
+              <li><a href="#features">Instant Results</a></li>
+            </ul>
+          </div>
+
+          <div className="footer-section">
+            <h4>Resources</h4>
+            <ul>
+              <li><a href="#how-it-works">How It Works</a></li>
+              <li><a href="#capabilities">Capabilities</a></li>
+              <li><a href="#">Documentation</a></li>
+              <li><a href="#">API Reference</a></li>
+            </ul>
+          </div>
+
+          <div className="footer-section">
+            <h4>Company</h4>
+            <ul>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Blog</a></li>
+              <li><a href="#">Privacy</a></li>
+              <li><a href="#">Terms</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="footer-bottom">
+          <p>&copy; 2024 RepoVision. Advanced code intelligence for developers.</p>
+        </div>
       </footer>
     </div>
   );

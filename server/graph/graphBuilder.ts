@@ -1,5 +1,5 @@
-import { extractDependencies } from '../parser/dependencyParser.ts';
-import type { Graph, RepositoryFile } from '../types.ts';
+import { extractDependencies } from '../parser/dependencyParser';
+import type { Graph, RepositoryFile } from '../types';
 
 export function buildDependencyGraph(files: RepositoryFile[]): Graph {
   const filePathSet = new Set(files.map((file) => file.path));
